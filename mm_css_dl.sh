@@ -115,16 +115,27 @@ fetch_cs2fixes_url() {
     | head -n 1
 }
 
+# Fetch CS2 GameModifiers Plugin
+fetch_gamemodifiers_url() {
+    curl -s https://api.github.com/repos/Lewisscrivens/CS2-GameModifiers-Plugin/releases/latest \
+    | grep "browser_download_url" \
+    | grep "GameModifiers-v.*\.zip" \
+    | cut -d '"' -f 4 \
+    | head -n 1
+}
+
+
 echo "Choose an option to download:"
 echo "1) Only Metamod"
-echo "2) Only Counterstrikesharp"
+echo "2) Only Counter-Strike Sharp"
 echo "3) Install both - CSS and Meta"
 echo "4) Only ZombieSharp"
 echo "5) Only MovementUnlocker"
 echo "6) Only MultiAddonManager"
 echo "7) Only CS2Fixes"
-echo "8) All"
-read -p "Enter your choice (1–8): " choice
+echo "8) Only GameModifiers Plugin"
+echo "9) All"
+read -p "Enter your choice (1–9): " choice
 
 
 
@@ -174,14 +185,21 @@ case $choice in
         download_and_extract_tar $CS2FIXES_URL $TEMP_DIR "cs2fixes"
         ;;
     8)
+        GMOD_URL=$(fetch_gamemodifiers_url)
+        [ -z "$GMOD_URL" ] && echo "Failed to fetch GameModifiers Plugin URL" && exit 1
+        download_and_extract_zip $GMOD_URL $TEMP_DIR "gamemodifiers"
+        ;;
+
+    9)
         METAMOD_URL=$(fetch_metamod_url)
         CSS_URL=$(fetch_css_url)
         ZSHARP_URL=$(fetch_zombiesharp_url)
         MU_URL=$(fetch_movementunlocker_url)
         MAM_URL=$(fetch_multiaddonmanager_url)
         CS2FIXES_URL=$(fetch_cs2fixes_url)
+        GMOD_URL=$(fetch_gamemodifiers_url)
 
-        if [[ -z "$METAMOD_URL" || -z "$CSS_URL" || -z "$ZSHARP_URL" || -z "$MU_URL" || -z "$MAM_URL" || -z "$CS2FIXES_URL" ]]; then
+        if [[ -z "$METAMOD_URL" || -z "$CSS_URL" || -z "$ZSHARP_URL" || -z "$MU_URL" || -z "$MAM_URL" || -z "$CS2FIXES_URL" || -z "$GMOD_URL" ]]; then
             echo "Failed to fetch one or more URLs"
             exit 1
         fi
@@ -192,6 +210,7 @@ case $choice in
         download_and_extract_tar $MU_URL $TEMP_DIR "movementunlocker"
         download_and_extract_tar $MAM_URL $TEMP_DIR "multiaddonmanager"
         download_and_extract_tar $CS2FIXES_URL $TEMP_DIR "cs2fixes"
+        download_and_extract_zip $GMOD_URL $TEMP_DIR "gamemodifiers"
         ;;
     *)
         echo "Invalid choice. Exiting."
