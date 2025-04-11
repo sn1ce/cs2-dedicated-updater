@@ -1,4 +1,4 @@
-# cs2-dedicated-updater
+# CS2-dedicated-updater
 This script simplifies the process of downloading and organizing key plugins for a dedicated Counter-Strike 2 server. It addresses common issues such as improper use of cp, which can disrupt directory structures, and the inconvenience of manually visiting multiple GitHub repositories to retrieve the latest releases.
 
 By automating the download and extraction process, the script ensures that all components are placed correctly within the addons directory, reducing the risk of misconfiguration and saving valuable setup time.
