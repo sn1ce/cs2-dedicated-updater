@@ -3,6 +3,25 @@ This script simplifies the process of downloading and organizing key plugins for
 
 By automating the download and extraction process, the script ensures that all components are placed correctly within the addons directory, reducing the risk of misconfiguration and saving valuable setup time.
 
+## What does it do?
+
+- It downloads all latest versions directly from Github
+
+You can also add other plugins, by adding and adjusting something like this:
+
+```
+fetch_cs2fixes_url() {
+    curl -s https://api.github.com/repos/Source2ZE/CS2Fixes/releases/latest \
+    | grep "browser_download_url" \
+    | grep "CS2Fixes-v.*-linux.tar.gz" \
+    | cut -d '"' -f 4 \
+    | head -n 1
+}
+```
+
+Also you gonna need to add this to the options in the section "case", at the bottom of the script.
+
+
 ## How To use
 
 Copy or download the script to your Counterstrike 2 dedicated server (i prefer using path /game/csgo/1_mods)
