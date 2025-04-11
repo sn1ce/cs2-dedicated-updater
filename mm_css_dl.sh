@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# https://github.com/sn1ce/cs2-dedicated-updater-script/blob/master/mm_css_dl.sh
 # Set verbose mode. Change to "true" to enable verbose output.
 VERBOSE_MODE="false"
 
