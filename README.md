@@ -1,12 +1,11 @@
 # cs2-dedicated-updater
-Small script to download all important plugins for your dedicated CS2 Server.
-Since i personally came often to the issue, simply using "cp" was not really helpful. 
-Also always going to all github sites, to download everything by hand is also not really nice.
-It helps to not mess up the structure while copying everything into the addons folder
+This script simplifies the process of downloading and organizing key plugins for a dedicated Counter-Strike 2 server. It addresses common issues such as improper use of cp, which can disrupt directory structures, and the inconvenience of manually visiting multiple GitHub repositories to retrieve the latest releases.
+
+By automating the download and extraction process, the script ensures that all components are placed correctly within the addons directory, reducing the risk of misconfiguration and saving valuable setup time.
 
 ## How To use
 
-copy or download the script to your counterstrike 2 dedicated server (i prefer using path /game/csgo/1_mods)
+Copy or download the script to your Counterstrike 2 dedicated server (i prefer using path /game/csgo/1_mods)
 
 simply do __bash mm_css_dl.sh__ or __./mm_css_dl.sh__
 
